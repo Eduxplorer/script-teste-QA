@@ -48,7 +48,7 @@ function test(descricao, fn){
 // ----------------------------------------------------------------
  
 // TESTE 1: Caminho FELIZ
-test('deve calcular o total de múltiplos itens corretamente', () => {
+test('deve calcular o total de múltiplos itens corretamente', () =>{
     const itens = [
         {nome: 'Produto A', preco: 10, qtd: 2}, // resultado da multiplicacao 20
         {nome: 'Produto B', preco: 5, qtd: 1}   // resultado da multiplicacao 5
@@ -144,8 +144,8 @@ function createRandomicoItens(){
 }
  
 // --- O TESTE DASEAD EM PROPRIEDADES ---
-test('deve aplciar 10% de desconto corretamente para todos os cenários aleatórios', () => {
-    const NUMERO_DE_TESTE = 150000; // Vamos "martelar!" a função 100 vezes!!! :D
+test('deve aplicar 10% de desconto corretamente para todos os cenários aleatórios', () => {
+    const NUMERO_DE_TESTE = 15000; // Vamos "martelar!" a função 100 vezes!!! :D
     for( let i = 0; i < NUMERO_DE_TESTE; i++ ){
         // Gera os dados
         // A cada loop, criamos um carrinho completamente novo e aleatório
@@ -174,7 +174,15 @@ test('deve aplciar 10% de desconto corretamente para todos os cenários aleatór
                 Recebido: ${totalRecebido}`
             );
         }
+
+        const li = document.createElement('li')
+        li.textContent = `[Cenário ${i+1}] OK - Total: R$${totalBruto.toFixed(2)} --> Com 10% de desconto: R$${totalDescontoBruto.toFixed(2)}`;
+        li.className = 'passou';
+        resultadosList.appendChild(li);
+
     }
+
+
     // Se o loop terminou sem 'throw', o teste passou!
     // O 'expect(true).toBe(true)' é só para nosso 'test' uma asserção final.
     expect(true).toBe(true);

@@ -84,25 +84,25 @@ test('(NOVA REGRA) - o cupom deve ser aplicado sempre pois tem um UpperCase (10%
 const casosTesteDescontos = [
     {
         descricao: 'Com 1 item de R$ 100',
-        itens: [{ nome: 'Poduto A', preco: 100, qtd: 1}],
+        itens: [{ nome: 'Produto A', preco: 100, qtd: 1}],
         esperado: 90 // Corresponde à '100*0.90 = 90'
     },
     {
         descricao: 'Com 5 item de R$ 20',
-        itens: [{ nome: 'Poduto B', preco: 20, qtd: 5}],
+        itens: [{ nome: 'Produto B', preco: 20, qtd: 5}],
         esperado: 90 // Corresponde à '100*0.90 = 90'
     },
     {
         descricao: 'Com múltiplos itens (2 itens de R$ 10) + (1 item de R$50)',
         itens: [
-            { nome: 'Poduto C', preco: 10, qtd: 2},
-            { nome: 'Poduto D', preco: 50, qtd: 1},
+            { nome: 'Produto C', preco: 10, qtd: 2},
+            { nome: 'Produto D', preco: 50, qtd: 1},
         ],
         esperado: 63 // Corresponde à '70*0.90 = 63'
     },
     {
         descricao: 'Com 1 item de R$ 10.50 (teste com centavos)',
-        itens: [{ nome: 'Poduto E', preco: 10.50, qtd: 1}],
+        itens: [{ nome: 'Produto E', preco: 10.50, qtd: 1}],
         esperado: 9.45 // Corresponde à '10.50*0.90 = 9.45'
     }
 ];
@@ -145,7 +145,7 @@ function createRandomicoItens(){
  
 // --- O TESTE DASEAD EM PROPRIEDADES ---
 test('deve aplicar 10% de desconto corretamente para todos os cenários aleatórios', () => {
-    const NUMERO_DE_TESTE = 15000; // Vamos "martelar!" a função 100 vezes!!! :D
+    const NUMERO_DE_TESTE = 100; // Vamos "martelar!" a função 100 vezes!!! :D
     for( let i = 0; i < NUMERO_DE_TESTE; i++ ){
         // Gera os dados
         // A cada loop, criamos um carrinho completamente novo e aleatório
@@ -175,14 +175,14 @@ test('deve aplicar 10% de desconto corretamente para todos os cenários aleatór
             );
         }
 
-        const li = document.createElement('li')
-        li.textContent = `[Cenário ${i+1}] OK - Total: R$${totalBruto.toFixed(2)} --> Com 10% de desconto: R$${totalDescontoBruto.toFixed(2)}`;
-        li.className = 'passou';
-        resultadosList.appendChild(li);
-
+        
+        const liCenario = document.createElement('li')
+        liCenario.textContent = `[Cenário ${i+1}] OK - Total: R$${totalBruto.toFixed(2)} --> Com 10% de desconto: R$${totalDescontoBruto.toFixed(2)}`;
+        liCenario.className = 'passou';
+        resultadosList.appendChild(liCenario);
     }
-
-
+    
+    
     // Se o loop terminou sem 'throw', o teste passou!
     // O 'expect(true).toBe(true)' é só para nosso 'test' uma asserção final.
     expect(true).toBe(true);
